@@ -1,0 +1,50 @@
+# ===== Dependencias =====
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# ===== Build / Distribución =====
+dist/
+build/
+out/
+*.min.js
+*.min.css
+
+# ===== IntelliJ / JetBrains =====
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# ===== VS Code =====
+.vscode/
+!.vscode/extensions.json
+
+# ===== Sistema Operativo =====
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
+
+# ===== Logs =====
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ===== Entorno =====
+.env
+.env.local
+.env.*.local
+
+# ===== Caches =====
+.cache/
+.parcel-cache/
+.eslintcache
+
+# ===== Archivos temporales =====
+*.tmp
+*.bak
