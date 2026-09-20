@@ -48,4 +48,4 @@ yarn-error.log*
 
 # ===== Archivos temporales =====
 *.tmp
-*.bak
+*.baksource/
