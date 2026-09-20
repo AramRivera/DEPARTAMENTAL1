@@ -15,12 +15,15 @@ export class Player extends Entity {
         this.spriteRows = 6;
         this.idleFrameCount = 515;
         this.runFrameCount = 41;
+        this.jumpFrameCount = 55;
         this.animationFps = 60;
         this.animationFrame = 0;
         this.animationTime = 0;
         this.animationType = 'idle';
         this.direction = 'Front';
         this.idleDirection = 'Front';
+        this.isJumping = false;
+        this.jumpDirection = 'Front';
         this.animations = {
             Front: this.loadIdleFrames('Front'),
             Back: this.loadIdleFrames('Back'),
@@ -36,6 +39,16 @@ export class Player extends Entity {
             FrontRigth: this.loadRunFrame('FrontRigth'),
             Left: this.loadRunFrame('Left'),
             Rigth: this.loadRunFrame('Rigth')
+        };
+        this.jumpAnimations = {
+            Back: this.loadJumpFrame('Back'),
+            BackLeft: this.loadJumpFrame('BackLeft'),
+            BackRigth: this.loadJumpFrame('BackRigth'),
+            Front: this.loadJumpFrame('Front'),
+            FrontLeft: this.loadJumpFrame('FrontLeft'),
+            FrontRigth: this.loadJumpFrame('FrontRigth'),
+            Left: this.loadJumpFrame('Left'),
+            Rigth: this.loadJumpFrame('Rigth')
         };
     }
 
@@ -57,6 +70,14 @@ export class Player extends Entity {
         return image;
     }
 
+    loadJumpFrame(direction) {
+        const image = new Image();
+        image.src =
+            `assets/sprites/player/rifle/jump/${direction}/` +
+            'Armature_Action.003_001.png';
+        return image;
+    }
+
     update(dt, worldBounds) {
         const axis = this.input.getMoveAxis();
         const isMoving = axis.x !== 0 || axis.y !== 0;
@@ -72,9 +93,18 @@ export class Player extends Entity {
             }
         }
 
+        if (!this.isJumping && this.input.consumeJump()) {
+            this.isJumping = true;
+            this.jumpDirection = isMoving ? nextDirection : this.direction;
+            this.animationFrame = 0;
+            this.animationTime = 0;
+        }
+
         this.animationTime += dt;
-        const frameCount = isMoving ? this.runFrameCount : this.idleFrameCount;
-        const animationType = isMoving ? 'run' : 'idle';
+        const frameCount = this.isJumping
+            ? this.jumpFrameCount
+            : isMoving ? this.runFrameCount : this.idleFrameCount;
+        const animationType = this.isJumping ? 'jump' : isMoving ? 'run' : 'idle';
         if (animationType !== this.animationType) {
             this.animationType = animationType;
             this.animationFrame = 0;
@@ -82,7 +112,15 @@ export class Player extends Entity {
         }
         while (this.animationTime >= 1 / this.animationFps) {
             this.animationTime -= 1 / this.animationFps;
-            this.animationFrame = (this.animationFrame + 1) % frameCount;
+            this.animationFrame += 1;
+            if (this.isJumping && this.animationFrame >= frameCount) {
+                this.isJumping = false;
+                this.animationType = isMoving ? 'run' : 'idle';
+                this.animationFrame = 0;
+                this.animationTime = 0;
+                break;
+            }
+            this.animationFrame %= frameCount;
         }
 
         // La velocidad sigue directamente al input para evitar deslizamiento.
@@ -129,6 +167,20 @@ export class Player extends Entity {
     }
 
     draw(renderer) {
+        if (this.animationType === 'jump') {
+            const image = this.jumpAnimations[this.jumpDirection];
+            const sourceX = (this.animationFrame % 11) * this.spriteSize;
+            const sourceY = Math.floor(this.animationFrame / 11) * this.spriteSize;
+            renderer.drawSpriteFrame(
+                image,
+                sourceX, sourceY,
+                this.spriteSize, this.spriteSize,
+                this.position.x, this.position.y,
+                this.width, this.height
+            );
+            return;
+        }
+
         if (this.animationType === 'run') {
             const image = this.runAnimations[this.direction];
             renderer.drawSpriteFrame(

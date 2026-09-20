@@ -1,12 +1,14 @@
 export class Input {
     constructor() {
         this.keys = new Set();
+        this.jumpPressed = false;
 
         window.addEventListener('keydown', (e) => {
             // evita scroll con flechas/espacio
             if (['ArrowUp','ArrowDown','ArrowLeft','ArrowRight',' '].includes(e.key)) {
                 e.preventDefault();
             }
+            if (e.code === 'Space' && !e.repeat) this.jumpPressed = true;
             this.keys.add(e.key.toLowerCase());
         });
 
@@ -15,10 +17,19 @@ export class Input {
         });
 
         // si la ventana pierde foco, limpia las teclas
-        window.addEventListener('blur', () => this.keys.clear());
+        window.addEventListener('blur', () => {
+            this.keys.clear();
+            this.jumpPressed = false;
+        });
     }
 
     isDown(key) { return this.keys.has(key.toLowerCase()); }
+
+    consumeJump() {
+        const pressed = this.jumpPressed;
+        this.jumpPressed = false;
+        return pressed;
+    }
 
     // Vector de movimiento normalizado en base a WASD (y flechas como extra)
     getMoveAxis() {
