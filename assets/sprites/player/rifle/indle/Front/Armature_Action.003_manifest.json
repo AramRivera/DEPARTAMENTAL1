@@ -1,0 +1,72 @@
+{
+  "object": "Armature",
+  "action": "Action.003",
+  "fps": 60,
+  "total_frames": 515,
+  "total_templates": 9,
+  "templates": [
+    {
+      "template_index": 1,
+      "image": "midleriflefront/Armature_Action.003_001.png",
+      "metadata": "midleriflefront/Armature_Action.003_001.json",
+      "frame_start": 1,
+      "frame_end": 60
+    },
+    {
+      "template_index": 2,
+      "image": "midleriflefront/Armature_Action.003_002.png",
+      "metadata": "midleriflefront/Armature_Action.003_002.json",
+      "frame_start": 61,
+      "frame_end": 120
+    },
+    {
+      "template_index": 3,
+      "image": "midleriflefront/Armature_Action.003_003.png",
+      "metadata": "midleriflefront/Armature_Action.003_003.json",
+      "frame_start": 121,
+      "frame_end": 180
+    },
+    {
+      "template_index": 4,
+      "image": "midleriflefront/Armature_Action.003_004.png",
+      "metadata": "midleriflefront/Armature_Action.003_004.json",
+      "frame_start": 181,
+      "frame_end": 240
+    },
+    {
+      "template_index": 5,
+      "image": "midleriflefront/Armature_Action.003_005.png",
+      "metadata": "midleriflefront/Armature_Action.003_005.json",
+      "frame_start": 241,
+      "frame_end": 300
+    },
+    {
+      "template_index": 6,
+      "image": "midleriflefront/Armature_Action.003_006.png",
+      "metadata": "midleriflefront/Armature_Action.003_006.json",
+      "frame_start": 301,
+      "frame_end": 360
+    },
+    {
+      "template_index": 7,
+      "image": "midleriflefront/Armature_Action.003_007.png",
+      "metadata": "midleriflefront/Armature_Action.003_007.json",
+      "frame_start": 361,
+      "frame_end": 420
+    },
+    {
+      "template_index": 8,
+      "image": "midleriflefront/Armature_Action.003_008.png",
+      "metadata": "midleriflefront/Armature_Action.003_008.json",
+      "frame_start": 421,
+      "frame_end": 480
+    },
+    {
+      "template_index": 9,
+      "image": "midleriflefront/Armature_Action.003_009.png",
+      "metadata": "midleriflefront/Armature_Action.003_009.json",
+      "frame_start": 481,
+      "frame_end": 515
+    }
+  ]
+}

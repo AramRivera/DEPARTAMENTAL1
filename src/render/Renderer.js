@@ -25,6 +25,15 @@ export class Renderer {
         this.ctx.fill();
     }
 
+    drawSpriteFrame(image, sourceX, sourceY, sourceWidth, sourceHeight, x, y, width, height) {
+        if (!image.complete || image.naturalWidth === 0) return;
+        this.ctx.drawImage(
+            image,
+            sourceX, sourceY, sourceWidth, sourceHeight,
+            x, y, width, height
+        );
+    }
+
     drawText(text, x, y, color = '#fff', size = 14) {
         this.ctx.fillStyle = color;
         this.ctx.font = `${size}px monospace`;

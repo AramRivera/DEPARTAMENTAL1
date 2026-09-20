@@ -28,6 +28,7 @@ Thumbs.db
 desktop.ini
 *.swp
 *~
+.source/
 
 # ===== Logs =====
 *.log

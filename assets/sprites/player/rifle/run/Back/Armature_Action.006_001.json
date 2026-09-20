@@ -1,0 +1,10 @@
+{
+  "frame_start": 1,
+  "frame_end": 41,
+  "fps": 60,
+  "columns": 41,
+  "rows": 1,
+  "cell_width": 512,
+  "cell_height": 512,
+  "template_index": 1
+}

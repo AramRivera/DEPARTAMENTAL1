@@ -1,0 +1,16 @@
+{
+  "object": "Armature",
+  "action": "Action.006",
+  "fps": 60,
+  "total_frames": 41,
+  "total_templates": 1,
+  "templates": [
+    {
+      "template_index": 1,
+      "image": "runriflebackleft/Armature_Action.006_001.png",
+      "metadata": "runriflebackleft/Armature_Action.006_001.json",
+      "frame_start": 1,
+      "frame_end": 41
+    }
+  ]
+}

@@ -2,7 +2,7 @@ import { Input } from './Input.js';
 import { GameLoop } from './GameLoop.js';
 import { Renderer } from '../render/Renderer.js';
 import { Level } from '../world/Level.js';
-import { Player } from '../entities/Player.js';
+import { Player, PLAYER_SIZE } from '../entities/Player.js';
 import { Enemy } from '../entities/Enemy.js';
 
 export class Game {
@@ -15,7 +15,11 @@ export class Game {
         this.level = new Level(width, height);
 
         // Jugador en el centro
-        const player = new Player(width / 2 - 16, height / 2 - 16, this.input);
+        const player = new Player(
+            width / 2 - PLAYER_SIZE / 2,
+            height / 2 - PLAYER_SIZE / 2,
+            this.input
+        );
         this.level.setPlayer(player);
 
         // Un enemigo de ejemplo
